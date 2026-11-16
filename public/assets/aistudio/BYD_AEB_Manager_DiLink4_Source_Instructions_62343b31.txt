@@ -1,0 +1,69 @@
+BYD AEB Manager — DiLink 4.0 / Android 10 starter patch
+=========================================================
+
+IMPORTANT
+---------
+This is a source patch for the public upstream project, NOT a built APK.
+Changing minSdk to 29 only allows installation attempts on Android 10; it does
+not prove that every feature works on DiLink 4.0. The AEB write transactions
+have NOT been validated on this vehicle. Do not test AEB changes on public
+roads, and do not rely on this app as a safety system.
+
+1) Get the complete original source
+-----------------------------------
+git clone https://github.com/EngMohamedKhamis/BYD-AEB-Manager.git
+cd BYD-AEB-Manager
+
+2) Apply the changes below to app/build.gradle
+----------------------------------------------
+In the `defaultConfig` block, replace:
+
+    minSdk 31
+    targetSdk 31
+    versionCode 19000
+    versionName "2.0"
+
+    resValue "string", "app_name", "AEB Manager"
+    resValue "string", "app_header", "AEB Manager For Dilink 5.0"
+    resValue "string", "accessibility_label", "AEB Helper"
+    resValue "string", "footer_text", "V2.0 - By MK"
+
+with:
+
+    minSdk 29
+    targetSdk 31
+    versionCode 21000
+    versionName "2.1"
+
+    resValue "string", "app_name", "AEB Manager"
+    resValue "string", "app_header", "AEB Manager For DiLink 4.0"
+    resValue "string", "accessibility_label", "AEB Helper"
+    resValue "string", "footer_text", "V2.1 - DiLink 4.0"
+
+Do not change the applicationId, namespace, ADB protocol, parcel parser,
+Engine state machine, or AEB transaction constants at this stage.
+
+3) Build a debug APK
+--------------------
+On a computer with Android Studio / Android SDK and JDK 17 installed:
+
+    ./gradlew :app:assembleDebug
+
+On Windows:
+
+    gradlew.bat :app:assembleDebug
+
+The output, if the build succeeds, will be:
+
+    app/build/outputs/apk/debug/app-debug.apk
+
+4) What this patch does NOT certify
+-----------------------------------
+- It does not certify successful installation on the BYD head unit.
+- It does not certify automatic start after ignition.
+- It does not certify the AEB write transactions.
+- It does not constitute a tested DiLink 4.0 release.
+
+The upstream project uses Android Gradle Plugin 8.1.0 and Gradle 8.9.
+The user's vehicle reported Android API 29. The upstream app's minSdk is 31,
+which is why this compatibility change is proposed.

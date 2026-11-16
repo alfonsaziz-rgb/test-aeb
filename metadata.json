@@ -1,0 +1,6 @@
+{
+  "name": "BYD AEB Manager — DiLink 4.0 Workbench",
+  "description": "Source patch workbench, API 29 compatibility audit, and debug APK build workflow for adapting BYD AEB Manager to DiLink 4.0 (Android 10).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
